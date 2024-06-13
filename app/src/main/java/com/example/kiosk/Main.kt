@@ -5,6 +5,26 @@ import android.view.Menu
 
 fun main() {
 
+    var tomatoPasta = DetailedMenu("베이컨 토마토 파스타", 1, 18000)
+    var carbonara = DetailedMenu("까르보나라 파스타", 2, 15000)
+    var maratangtang = DetailedMenu("마라탕후루 파스타", 3, 25000)
+
+    var pastaList = mutableListOf(tomatoPasta,carbonara,maratangtang)
+
+    var cheezePizza = DetailedMenu("치즈 피자", 1 , 20000)
+    var pineApplePizza = DetailedMenu("파인애플 피자", 2, 22000)
+
+    var pizzaList = mutableListOf(cheezePizza,pineApplePizza)
+
+    var cola = DetailedMenu("콜라",1,2500)
+    var sprite = DetailedMenu("스프라이트",2,2500)
+
+    var drinkList = mutableListOf(cola,sprite)
+
+    var categoryList = arrayOf(pastaList,pizzaList,drinkList)
+
+
+
     while (true) {
         var selectedCategory = displayCategory()
         if (selectedCategory == 0) {
@@ -13,8 +33,7 @@ fun main() {
         }
 
 
-
-            displayDetailedMenu(selectedCategory)
+            movePage(selectedCategory,categoryList)
             var selectedMenu = inputSelect("menu").toString().toInt()
 
             when (selectedMenu) {
@@ -64,56 +83,36 @@ fun inputSelect(type: String): Any? {
 }
 
 
-fun displayDetailedMenu(selectedCategory: Int) {
-
-
-    when (selectedCategory) {
-        1 -> {
-
-            println("-------Pasta-------")
-            println("아래 메뉴판을 보시고 메뉴를 선택해주세요")
-            var tomatoPasta = DetailedMenu("베이컨 토마토 파스타", 1, 18000)
-            var carbonara = DetailedMenu("까르보나라 파스타", 2, 15000)
-            var maratangtang = DetailedMenu("마라탕후루 파스타", 3, 25000)
-
-            tomatoPasta.display()
-            carbonara.display()
-            maratangtang.display()
-            println("[0] 뒤로가기")
-
+fun displayDetailedMenu(menuList: List<DetailedMenu>) {
+        println("------- menuList -------")
+        println("아래 메뉴판을 보시고 메뉴를 선택해주세요")
+        for(i in menuList.indices){
+            menuList[i].display()
         }
-
-        2 -> {
-            println("-------Pizza-------")
-            println("아래 메뉴판을 보시고 메뉴를 선택해주세요")
-            var peperoniPizza = DetailedMenu("페퍼로니 피자", 1, 20000)
-            var cheezePizza = DetailedMenu("치즈 피자", 2, 18000)
-
-            peperoniPizza.display()
-            cheezePizza.display()
-            println("[0] 뒤로가기")
-
-        }
-
-        3 -> {
-            println("-------Drinks-------")
-            println("아래 메뉴판을 보시고 메뉴를 선택해주세요")
-            var cola = DetailedMenu("콜라", 1, 3000)
-            var zeroCola = DetailedMenu("제로콜라", 2, 2500)
-
-            cola.display()
-            zeroCola.display()
-            println("[0] 뒤로가기")
-
-        }
-
-        else -> {
-            println("주문 종료")
-        }
-
+        println("[0] 뒤로가기")
     }
 
 
+
+
+
+
+
+
+
+fun movePage(selectedCategory: Int,categoryList: Array<MutableList<DetailedMenu>>){
+    when(selectedCategory){
+        1 -> {
+            displayDetailedMenu(categoryList[0])
+        }
+        2 -> {
+            displayDetailedMenu(categoryList[1])
+        }
+        3 -> {
+            displayDetailedMenu(categoryList[2])
+        }
+
+    }
 }
 
 

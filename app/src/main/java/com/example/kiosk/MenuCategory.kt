@@ -1,16 +1,21 @@
 package com.example.kiosk
 
-open class MenuCategory { //DetailedMenu 인스턴스들을 리스트로 묶어주기 //카테고리를 만들어줘야함
+open class MenuCategory(name : String) {
 
+    var menuList = mutableListOf<DetailedMenu>()
 
-//    var categoryNumber : Int
-//    var categoryName : String
-    var category = mutableListOf<DetailedMenu>()
-
-
-    fun addCategory(_menuName : DetailedMenu){
-        category.add(_menuName)
+    fun addMenu(menu : DetailedMenu){
+        menuList.add(menu)
     }
+
+//    fun displayDetailedMenu() {
+//        println("------- $name -------")
+//        println("아래 메뉴판을 보시고 메뉴를 선택해주세요")
+//        for(i in categoryList.indices){
+//            categoryList[i].display()
+//        }
+//        println("[0] 뒤로가기")
+//    }
 
 
 

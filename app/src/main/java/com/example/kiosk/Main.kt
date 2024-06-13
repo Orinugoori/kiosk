@@ -5,23 +5,12 @@ import android.view.Menu
 
 fun main() {
 
-    var tomatoPasta = DetailedMenu("베이컨 토마토 파스타", 1, 18000)
-    var carbonara = DetailedMenu("까르보나라 파스타", 2, 15000)
-    var maratangtang = DetailedMenu("마라탕후루 파스타", 3, 25000)
+    val pasta = Pasta()
+    val pizza = Pizza()
+    val drinks = Drinks()
 
-    var pastaList = mutableListOf(tomatoPasta,carbonara,maratangtang)
 
-    var cheezePizza = DetailedMenu("치즈 피자", 1 , 20000)
-    var pineApplePizza = DetailedMenu("파인애플 피자", 2, 22000)
-
-    var pizzaList = mutableListOf(cheezePizza,pineApplePizza)
-
-    var cola = DetailedMenu("콜라",1,2500)
-    var sprite = DetailedMenu("스프라이트",2,2500)
-
-    var drinkList = mutableListOf(cola,sprite)
-
-    var categoryList = arrayOf(pastaList,pizzaList,drinkList)
+    var categoryList = listOf(pasta,pizza,drinks)
 
 
 
@@ -94,22 +83,16 @@ fun displayDetailedMenu(menuList: List<DetailedMenu>) {
 
 
 
-
-
-
-
-
-
-fun movePage(selectedCategory: Int,categoryList: Array<MutableList<DetailedMenu>>){
+fun movePage(selectedCategory: Int,categoryList: List<MenuCategory>){
     when(selectedCategory){
         1 -> {
-            displayDetailedMenu(categoryList[0])
+            displayDetailedMenu(categoryList[0].menuList)
         }
         2 -> {
-            displayDetailedMenu(categoryList[1])
+            displayDetailedMenu(categoryList[1].menuList)
         }
         3 -> {
-            displayDetailedMenu(categoryList[2])
+            displayDetailedMenu(categoryList[2].menuList)
         }
 
     }

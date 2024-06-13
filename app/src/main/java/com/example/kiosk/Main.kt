@@ -13,7 +13,7 @@ fun main() {
         }
 
 
-        while (true) {
+
             displayDetailedMenu(selectedCategory)
             var selectedMenu = inputSelect("menu").toString().toInt()
 
@@ -22,12 +22,12 @@ fun main() {
                 2 -> println("주문 완료")
                 3 -> println("주문 완료")
                 0 -> {
-                    break
+
                 }
             }
 
         }
-    }
+
 
 
 }

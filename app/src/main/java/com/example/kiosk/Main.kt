@@ -8,6 +8,7 @@ package com.example.kiosk
 
         displayMainMenu()
         var selectMainMenu = inputSelect("mainmenu").toString().toInt()
+        moveToDetailedMenu()
 
 
 
@@ -34,14 +35,15 @@ fun inputSelect(type: String): Any?{
 
 
 fun displayMainMenu(){
-    println("=======오리너구리 식당 메뉴판=======")
-    println("아래 메뉴판을 보시고 메뉴를 선택하면 세부 메뉴를 확인할 수 있습니다.")
 
-    println("[오리너구리]")
-    println("1. Pasta")
-    println("2. Pizza")
-    println("3. Drinks")
-    println("0. 종료")
+    println("=======오리너구리 식당 메뉴판=======")
+    println("아래 메뉴판을 보시고 카테고리를 선택하면 세부 메뉴를 확인할 수 있습니다.")
+    println("[메뉴 카테고리]")
+
+    var pasta = MainMenu(1,"Pasta")
+    var pizza = MainMenu(2,"Pizza")
+    var drinks = MainMenu(3,"Drinks")
+    println("[0] 종료")
 }
 
 fun displayDetailedMenu(){
@@ -53,18 +55,12 @@ fun displayDetailedMenu(){
     println("3. 마라탕후루 파스타")
 }
 
-fun moveToDetailedMenu(selectedMAinMenu : Int){
-    selectedMAinMenu
-
+fun moveToDetailedMenu(){
+   displayDetailedMenu()
 }
 
-class MainMenu {
-    val pasta
-    val pizza
-    val drinks
-}
 
-class Menu{
+class DetailedMenu{
 
 
 }

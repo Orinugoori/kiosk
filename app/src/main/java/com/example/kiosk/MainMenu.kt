@@ -1,12 +1,15 @@
 package com.example.kiosk
 
-class MainMenu {
-    var number : Int
-    var name : String
+class MainMenu{
 
-    constructor(_number: Int, _name: String){
-        number = _number
-        name = _name
-        println("[$number] $name")
+
+    var categoryNumber : Int
+    var categoryName : String
+
+
+    constructor(_categoryNumber: Int, _categoryName: String){
+        categoryNumber = _categoryNumber
+        categoryName = _categoryName
+        println("[$categoryNumber] $categoryName")
     }
 }

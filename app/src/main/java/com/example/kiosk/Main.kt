@@ -8,7 +8,8 @@ fun main() {
 
 
     while (true) {
-        val selectedCategory = displayCategory(categoryList)
+        displayCategory(categoryList)
+        var selectedCategory = inputSelect("category", categoryList).toString().toInt()
         if (selectedCategory == 0) {
             println("프로그램을 종료합니다.")
             break
@@ -16,50 +17,67 @@ fun main() {
 
 
         displayDetailedMenu(selectedCategory, menuList)
-        val selectedMenu = inputSelect("menu").toString().toInt()
+        var selectedMenu = inputSelect("menu", menuList).toString().toInt()
 
         when (selectedMenu) {
-            1 -> println("주문 완료")
-            2 -> println("주문 완료")
-            3 -> println("주문 완료")
-            0 -> {
-            }
+            in 1 ..menuList.size -> println("주문 완료")
+            0 -> {}
+
         }
     }
 }
 
 
-fun displayCategory(categoryList: List<Menu>): Int {
+fun displayCategory(categoryList: List<Menu>){
 
     println("=======오리너구리 식당 메뉴판=======")
     println("아래 메뉴판을 보시고 카테고리를 선택하면 세부 메뉴를 확인할 수 있습니다.")
     println("[메뉴 카테고리]")
-    for(i in categoryList.indices){
+    for (i in categoryList.indices) {
         categoryList[i].display()
     }
     println("[0] 종료")
 
 
-    return inputSelect("category").toString().toInt()
 }
 
-fun inputSelect(type: String): Any? {
+fun inputSelect(type: String,list : List<Menu>): Any? {
     return when (type) {
         "category" -> {
             println("어떤 카테고리를 선택하시겠습니까?")
-            readln()
+            while (true) {
+                try {
+                    var selectedCategory = readln().toString()
+                    if (selectedCategory.isNotEmpty() && selectedCategory.toIntOrNull() in 0 until  list.size+1) {
+                        return selectedCategory
+                    } else {
+                        println("다시 입력해주세요")
+                    }
+                }catch (e: Exception){
+                    println("다시 입력해주세요")
+                }
+            }
         }
 
         "menu" -> {
             println("어떤 메뉴를 선택 하시겠습니까?")
-            readln()
+            while (true) {
+                try {
+                    var selectedCMenu = readln().toString()
+                    if (selectedCMenu.isNotEmpty() && selectedCMenu.toIntOrNull()in 0 ..3) {
+                        return selectedCMenu
+                    } else {
+                        println("다시 입력해주세요")
+                    }
+                }catch (e: Exception){
+                    println("다시 입력해주세요")
+                }
+            }
         }
 
         else -> 0
     }
 }
-
-
 
 
 fun displayDetailedMenu(selectedCategory: Int, menuList: List<Menu>) {
@@ -115,6 +133,7 @@ fun init() {
 
     val cola = Drinks("콜라", 1, 2500)
     val sprite = Drinks("사이다", 2, 2500)
+    val ade = Drinks("에이드",3,4500)
 
     menuList.add(tomatoPasta)
     menuList.add(carbonara)
@@ -123,6 +142,7 @@ fun init() {
     menuList.add(cheezePizza)
     menuList.add(cola)
     menuList.add(sprite)
+    menuList.add(ade)
 
 
 }

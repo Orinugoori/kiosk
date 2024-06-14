@@ -1,12 +1,20 @@
 package com.example.kiosk
 
-class Drinks : MenuCategory("Drinks") {
+class Drinks : Menu {
 
-    init {
-        addMenu(DetailedMenu("콜라",1,2500))
-        addMenu(DetailedMenu("사이다",2,2500))
+
+    val price : Int
+
+    constructor(_menuName: String, _menuNumber: Int, _price: Int)
+            : super(_menuNumber, _menuName) {
+        price = _price
+
     }
 
+
+    override fun display(){
+        println("[${menuNumber}] <$menuName> --- $price 원 ")
+    }
 
 
 }

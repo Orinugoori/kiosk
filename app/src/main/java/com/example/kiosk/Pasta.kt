@@ -1,11 +1,20 @@
 package com.example.kiosk
 
-class Pasta : MenuCategory("Pasta"){
+class Pasta : Menu{
 
-    init {
-        addMenu(DetailedMenu("베이컨토마토 파스타",1,18000))
-        addMenu(DetailedMenu("까르보나라 파스타",2,15000))
-        addMenu(DetailedMenu("마라탕후루 파스타",3,25000))
+
+    val price : Int
+    val noodle : String
+
+    constructor(_menuName : String ,  _menuNumber : Int , _price : Int , _noodle : String)
+    :super(_menuNumber,_menuName){
+        price = _price
+        noodle = _noodle
     }
+
+    override fun display(){
+        println("[${menuNumber}] <$menuName> 파스타 면 종류 : $noodle --- $price 원 ")
+    }
+
 
 }

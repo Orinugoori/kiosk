@@ -1,54 +1,42 @@
 package com.example.kiosk
 
-import android.view.Menu
-
-
+var menuList = mutableListOf<Menu>()
+var categoryList = mutableListOf<Menu>()
 fun main() {
 
-    val pasta = Pasta()
-    val pizza = Pizza()
-    val drinks = Drinks()
-
-
-    var categoryList = listOf(pasta,pizza,drinks)
-
+    init()
 
 
     while (true) {
-        var selectedCategory = displayCategory()
+        val selectedCategory = displayCategory(categoryList)
         if (selectedCategory == 0) {
             println("프로그램을 종료합니다.")
             break
         }
 
 
-            movePage(selectedCategory,categoryList)
-            var selectedMenu = inputSelect("menu").toString().toInt()
+        displayDetailedMenu(selectedCategory, menuList)
+        val selectedMenu = inputSelect("menu").toString().toInt()
 
-            when (selectedMenu) {
-                1 -> println("주문 완료")
-                2 -> println("주문 완료")
-                3 -> println("주문 완료")
-                0 -> {
-
-                }
+        when (selectedMenu) {
+            1 -> println("주문 완료")
+            2 -> println("주문 완료")
+            3 -> println("주문 완료")
+            0 -> {
             }
-
         }
-
-
-
+    }
 }
 
 
-fun displayCategory(): Int {
+fun displayCategory(categoryList: List<Menu>): Int {
 
     println("=======오리너구리 식당 메뉴판=======")
     println("아래 메뉴판을 보시고 카테고리를 선택하면 세부 메뉴를 확인할 수 있습니다.")
     println("[메뉴 카테고리]")
-    println("[1] Pasta ")
-    println("[2] Pizza ")
-    println("[3] Drinks")
+    for(i in categoryList.indices){
+        categoryList[i].display()
+    }
     println("[0] 종료")
 
 
@@ -72,30 +60,69 @@ fun inputSelect(type: String): Any? {
 }
 
 
-fun displayDetailedMenu(menuList: List<DetailedMenu>) {
-        println("------- menuList -------")
-        println("아래 메뉴판을 보시고 메뉴를 선택해주세요")
-        for(i in menuList.indices){
-            menuList[i].display()
-        }
-        println("[0] 뒤로가기")
-    }
 
 
-
-fun movePage(selectedCategory: Int,categoryList: List<MenuCategory>){
-    when(selectedCategory){
+fun displayDetailedMenu(selectedCategory: Int, menuList: List<Menu>) {
+    when (selectedCategory) {
         1 -> {
-            displayDetailedMenu(categoryList[0].menuList)
+            println("------- Pasta -------")
+            println("아래 메뉴판을 보시고 메뉴를 선택해주세요")
+            for (i in menuList.indices) {
+                if (menuList[i] is Pasta)
+                    menuList[i].display()
+            }
+            println("[0] 뒤로가기")
         }
+
         2 -> {
-            displayDetailedMenu(categoryList[1].menuList)
+            println("------- Pizza -------")
+            println("아래 메뉴판을 보시고 메뉴를 선택해주세요")
+            for (i in menuList.indices) {
+                if (menuList[i] is Pizza)
+                    menuList[i].display()
+            }
+            println("[0] 뒤로가기")
         }
+
         3 -> {
-            displayDetailedMenu(categoryList[2].menuList)
+            println("------- Drinks -------")
+            println("아래 메뉴판을 보시고 메뉴를 선택해주세요")
+            for (i in menuList.indices) {
+                if (menuList[i] is Drinks)
+                    menuList[i].display()
+            }
+            println("[0] 뒤로가기")
         }
 
     }
 }
 
 
+fun init() {
+    val pasta = Menu(1, "Pasta")
+    val pizza = Menu(2, "Pizza")
+    val drinks = Menu(3, "Drinks")
+
+    categoryList = mutableListOf(pasta, pizza, drinks)
+
+    val tomatoPasta = Pasta("토마토 파스타", 1, 15000, "링귀니")
+    val carbonara = Pasta("까르보나라", 2, 18000, "페투치네")
+    val maratang = Pasta("마라탕후루 파스타", 3, 20000, "스파게티니")
+
+    val hawaianPizza = Pizza("하와이안 피자", 1, 17000, "L")
+    val cheezePizza = Pizza("치즈 피자", 2, 15000, "s")
+
+
+    val cola = Drinks("콜라", 1, 2500)
+    val sprite = Drinks("사이다", 2, 2500)
+
+    menuList.add(tomatoPasta)
+    menuList.add(carbonara)
+    menuList.add(maratang)
+    menuList.add(hawaianPizza)
+    menuList.add(cheezePizza)
+    menuList.add(cola)
+    menuList.add(sprite)
+
+
+}

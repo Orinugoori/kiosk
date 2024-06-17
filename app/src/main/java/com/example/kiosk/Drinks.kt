@@ -3,7 +3,7 @@ package com.example.kiosk
 class Drinks : Menu {
 
 
-    val price : Int
+    val price: Int
 
     constructor(_menuName: String, _menuNumber: Int, _price: Int)
             : super(_menuNumber, _menuName) {
@@ -12,7 +12,7 @@ class Drinks : Menu {
     }
 
 
-    override fun display(){
+    override fun display() {
         println("[${menuNumber}] <$menuName> --- $price 원 ")
     }
 
